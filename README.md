@@ -1,6 +1,6 @@
-# 游戏风格网站后端API
+# 游戏风格网站
 
-基于 Node.js + Express + MySQL 开发的后端API服务。
+基于 Node.js + Express + MySQL 开发得网站。
 
 ## 项目结构
 
