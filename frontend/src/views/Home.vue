@@ -226,11 +226,56 @@ import Layout from '@/components/Layout.vue'
 </script>
 
 <style scoped>
+/* ========== 基础布局变量 ========== */
 .home {
   min-height: calc(100vh - 80px);
+  --section-padding: 6rem;
+  --section-padding-large: 8rem;
+  --card-padding: 2rem;
+  --grid-gap: 2rem;
+  --content-gap: 1.5rem;
 }
 
-/* Hero Section */
+/* ========== 统一区块样式 ========== */
+.section {
+  padding: var(--section-padding-large) 0;
+}
+
+.section-dark {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.section-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ========== Hero Section ========== */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -245,36 +290,37 @@ import Layout from '@/components/Layout.vue'
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 4rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 5rem;
   align-items: center;
   position: relative;
   z-index: 1;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 650px;
   min-width: 0;
 }
 
 .hero-badge {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: rgba(102, 126, 234, 0.2);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background: rgba(102, 126, 234, 0.15);
   border: 1px solid rgba(102, 126, 234, 0.3);
   border-radius: 50px;
   color: #667eea;
   font-size: 0.9rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   backdrop-filter: blur(10px);
 }
 
 .hero-title {
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 800;
-  margin-bottom: 2rem;
-  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  line-height: 1.05;
 }
 
 .gradient-text {
@@ -292,31 +338,34 @@ import Layout from '@/components/Layout.vue'
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 3rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+  max-width: 580px;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   flex-wrap: wrap;
 }
 
 .btn-hero-primary,
 .btn-hero-secondary,
 .btn-hero-outline {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
+  padding: 0.9rem 1.75rem;
   border-radius: var(--border-radius-lg);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .btn-hero-primary {
@@ -357,34 +406,37 @@ import Layout from '@/components/Layout.vue'
 .hero-stats {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
-  row-gap: 1rem;
+  row-gap: 1.25rem;
 }
 
 .stat-item {
   text-align: center;
+  min-width: 80px;
 }
 
 .stat-number {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 800;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1;
+  margin-bottom: 0.35rem;
 }
 
 .stat-label {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
 }
 
 .stat-divider {
   width: 1px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.2);
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.25), transparent);
 }
 
 .hero-visual {
@@ -396,14 +448,14 @@ import Layout from '@/components/Layout.vue'
 
 .hero-card-stack {
   position: relative;
-  width: 300px;
-  height: 400px;
+  width: 340px;
+  height: 420px;
 }
 
 .hero-card {
   position: absolute;
-  width: 200px;
-  height: 120px;
+  width: 220px;
+  height: 130px;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
@@ -432,27 +484,28 @@ import Layout from '@/components/Layout.vue'
 }
 
 .card-2 {
-  top: 80px;
+  top: 90px;
   right: 0;
   z-index: 2;
   animation: float 6s ease-in-out infinite 2s;
 }
 
 .card-3 {
-  bottom: 0;
-  left: 50px;
+  bottom: 20px;
+  left: 60px;
   z-index: 1;
   animation: float 6s ease-in-out infinite 4s;
 }
 
 .card-icon {
-  font-size: 2rem;
+  font-size: 2.25rem;
   margin-bottom: 0.5rem;
 }
 
 .card-title {
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
 }
 
 @keyframes float {
@@ -460,7 +513,7 @@ import Layout from '@/components/Layout.vue'
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-12px);
   }
 }
 
@@ -526,41 +579,18 @@ import Layout from '@/components/Layout.vue'
   }
 }
 
-/* Features Section */
+/* ========== Features Section ========== */
 .features {
-  padding: 8rem 0;
+  padding: var(--section-padding-large) 0;
   background: rgba(0, 0, 0, 0.2);
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 600px;
-  margin: 0 auto;
 }
 
 .features-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 2rem;
-  min-height: 520px;
-  align-items: stretch;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--grid-gap);
+  min-height: 480px;
 }
 
 .feature-card {
@@ -569,15 +599,17 @@ import Layout from '@/components/Layout.vue'
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-xl);
-  padding: 2.5rem;
+  padding: var(--card-padding);
   cursor: pointer;
   transition: all 0.4s ease;
   overflow: hidden;
-  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .large-card {
   grid-row: 1 / -1;
+  padding: 2.5rem;
 }
 
 .feature-card:hover {
@@ -611,66 +643,87 @@ import Layout from '@/components/Layout.vue'
 .feature-content {
   position: relative;
   z-index: 1;
-  min-height: 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .feature-icon {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
+.large-card .feature-icon {
+  font-size: 4.5rem;
+  margin-bottom: 1.25rem;
+}
+
 .feature-card h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
   color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.large-card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
 }
 
 .feature-card p {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
   flex: 1;
+  font-size: 0.95rem;
+}
+
+.large-card p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .feature-tags {
   display: flex;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: auto;
   flex-wrap: wrap;
+  padding-top: 0.5rem;
 }
 
 .tag {
-  padding: 0.25rem 0.75rem;
-  background: rgba(102, 126, 234, 0.2);
-  border: 1px solid rgba(102, 126, 234, 0.3);
+  padding: 0.35rem 0.85rem;
+  background: rgba(102, 126, 234, 0.15);
+  border: 1px solid rgba(102, 126, 234, 0.25);
   border-radius: 20px;
   font-size: 0.8rem;
   color: #667eea;
+  font-weight: 500;
 }
 
 .feature-meta {
-  margin-top: 1rem;
-  font-size: 0.9rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.85rem;
   color: #667eea;
   font-weight: 600;
 }
 
-/* Quick Access Section */
+/* ========== Quick Access Section ========== */
 .quick-access {
-  padding: 8rem 0;
+  padding: var(--section-padding-large) 0;
 }
 
 .access-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: var(--grid-gap);
 }
 
 .access-card {
   position: relative;
-  height: 250px;
+  height: 260px;
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   text-decoration: none;
@@ -680,7 +733,8 @@ import Layout from '@/components/Layout.vue'
 }
 
 .access-card:hover {
-  transform: scale(1.05) translateY(-10px);
+  transform: scale(1.03) translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
 }
 
 .access-bg {
@@ -689,7 +743,7 @@ import Layout from '@/components/Layout.vue'
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.8;
+  opacity: 0.85;
   transition: opacity 0.3s ease;
 }
 
@@ -716,27 +770,31 @@ import Layout from '@/components/Layout.vue'
 .access-content {
   position: relative;
   z-index: 1;
-  padding: 2rem;
+  padding: var(--card-padding);
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .access-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.75rem;
+  margin-bottom: 0.75rem;
   display: block;
 }
 
 .access-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: #fff;
   margin-bottom: 0.5rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 .access-card p {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
 }
 
 .access-arrow {
@@ -744,56 +802,63 @@ import Layout from '@/components/Layout.vue'
   color: #fff;
   font-weight: bold;
   transition: transform 0.3s ease;
+  margin-top: auto;
 }
 
 .access-card:hover .access-arrow {
-  transform: translateX(5px);
+  transform: translateX(8px);
 }
 
-/* CTA Section */
+/* ========== CTA Section ========== */
 .cta-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  padding: var(--section-padding) 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
   backdrop-filter: blur(20px);
 }
 
 .cta-content {
   text-align: center;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
 }
 
 .cta-content h2 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 800;
   margin-bottom: 1rem;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.2;
 }
 
 .cta-content p {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.25rem;
+  line-height: 1.7;
 }
 
 .cta-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .btn-cta-primary,
 .btn-cta-secondary {
-  padding: 1rem 2.5rem;
+  padding: 0.95rem 2.25rem;
   border-radius: var(--border-radius-lg);
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
 }
 
 .btn-cta-primary {
@@ -808,22 +873,33 @@ import Layout from '@/components/Layout.vue'
 }
 
 .btn-cta-secondary {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   color: #fff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
 }
 
 .btn-cta-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-3px);
 }
 
-/* 响应式设计 */
+/* ========== 响应式设计 ========== */
 @media (max-width: 1400px) {
   .hero-container {
     max-width: 1200px;
+    gap: 4rem;
+  }
+  
+  .hero-card-stack {
+    width: 300px;
+    height: 380px;
+  }
+  
+  .hero-card {
+    width: 190px;
+    height: 115px;
   }
 }
 
@@ -834,9 +910,31 @@ import Layout from '@/components/Layout.vue'
     text-align: center;
   }
   
+  .hero-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .hero-subtitle {
+    max-width: 100%;
+  }
+  
+  .hero-buttons {
+    justify-content: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+  }
+  
+  .hero-card-stack {
+    width: 320px;
+    height: 400px;
+  }
+  
   .features-grid {
     grid-template-columns: 1fr 1fr;
-    height: auto;
+    grid-template-rows: auto auto auto;
   }
   
   .large-card {
@@ -850,26 +948,119 @@ import Layout from '@/components/Layout.vue'
 }
 
 @media (max-width: 768px) {
+  .home {
+    --section-padding: 4rem;
+    --section-padding-large: 5rem;
+    --card-padding: 1.5rem;
+    --grid-gap: 1.5rem;
+  }
+  
+  .hero-container {
+    padding: 0 1rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.25rem, 8vw, 3.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .btn-hero-primary,
+  .btn-hero-secondary,
+  .btn-hero-outline {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
   .hero-stats {
-    flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
+    row-gap: 1rem;
   }
   
   .stat-divider {
     display: none;
   }
   
+  .stat-number {
+    font-size: 1.75rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  .hero-card-stack {
+    width: 280px;
+    height: 350px;
+  }
+  
+  .hero-card {
+    width: 170px;
+    height: 100px;
+    padding: 1.25rem;
+  }
+  
   .features-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .feature-icon {
+    font-size: 3rem;
+  }
+  
+  .large-card .feature-icon {
+    font-size: 3.5rem;
+  }
+  
+  .feature-card h3 {
+    font-size: 1.25rem;
+  }
+  
+  .large-card h3 {
+    font-size: 1.5rem;
   }
   
   .access-grid {
     grid-template-columns: 1fr;
   }
   
+  .access-card {
+    height: 220px;
+  }
+  
+  .access-icon {
+    font-size: 2.5rem;
+  }
+  
+  .access-card h3 {
+    font-size: 1.25rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.85rem;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+  }
+  
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
+  }
+  
+  .btn-cta-primary,
+  .btn-cta-secondary {
+    width: 100%;
+    max-width: 280px;
   }
 }
 </style>
