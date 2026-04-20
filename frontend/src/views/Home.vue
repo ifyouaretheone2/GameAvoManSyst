@@ -57,27 +57,21 @@
           </div>
           
           <div class="hero-visual">
-            <div class="hero-card-stack">
-              <div class="hero-card card-1">
+            <div class="hero-card-grid">
+              <div class="hero-card" @click="$router.push('/characters')">
                 <div class="card-icon">👤</div>
-                <div class="card-content">
-                  <div class="card-title">角色系统</div>
-                  <div class="card-desc">探索精彩角色</div>
-                </div>
+                <div class="card-title">角色系统</div>
+                <div class="card-desc">探索精彩角色</div>
               </div>
-              <div class="hero-card card-2">
+              <div class="hero-card" @click="$router.push('/news')">
                 <div class="card-icon">📰</div>
-                <div class="card-content">
-                  <div class="card-title">新闻资讯</div>
-                  <div class="card-desc">获取最新动态</div>
-                </div>
+                <div class="card-title">新闻资讯</div>
+                <div class="card-desc">获取最新动态</div>
               </div>
-              <div class="hero-card card-3">
+              <div class="hero-card" @click="$router.push('/gameplay')">
                 <div class="card-icon">🎮</div>
-                <div class="card-content">
-                  <div class="card-title">玩法指南</div>
-                  <div class="card-desc">掌握核心技巧</div>
-                </div>
+                <div class="card-title">玩法指南</div>
+                <div class="card-desc">掌握核心技巧</div>
               </div>
             </div>
           </div>
@@ -453,49 +447,45 @@ import Layout from '@/components/Layout.vue'
   justify-content: center;
   align-items: center;
   min-width: 0;
-  width: 100%;
 }
 
-.hero-card-stack {
-  position: relative;
+.hero-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
   width: 100%;
   max-width: 380px;
-  height: 440px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
 }
 
 .hero-card {
   position: relative;
-  width: 260px;
-  height: 140px;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-lg);
-  padding: 1.5rem;
+  padding: 1.5rem 1.25rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
-  gap: 1.25rem;
-  z-index: 1;
+  min-height: 120px;
+  overflow: hidden;
 }
 
 .hero-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .hero-card:hover::before {
@@ -503,59 +493,50 @@ import Layout from '@/components/Layout.vue'
 }
 
 .hero-card:hover {
-  transform: translateY(-8px) translateX(10px);
+  transform: translateY(-6px);
   background: var(--hover-glass-bg);
   border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-  z-index: 10;
+  box-shadow: 0 16px 40px rgba(102, 126, 234, 0.2);
 }
 
-.card-1 {
-  animation: float 6s ease-in-out infinite;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, var(--glass-bg) 100%);
+.hero-card:nth-child(1) {
+  animation: float-soft 4s ease-in-out infinite;
 }
 
-.card-2 {
-  margin-left: 2rem;
-  animation: float 6s ease-in-out infinite 2s;
-  background: linear-gradient(135deg, rgba(240, 147, 251, 0.15) 0%, var(--glass-bg) 100%);
+.hero-card:nth-child(2) {
+  animation: float-soft 4s ease-in-out infinite 0.5s;
 }
 
-.card-3 {
-  margin-left: 4rem;
-  animation: float 6s ease-in-out infinite 4s;
-  background: linear-gradient(135deg, rgba(79, 172, 254, 0.15) 0%, var(--glass-bg) 100%);
+.hero-card:nth-child(3) {
+  grid-column: 1 / -1;
+  animation: float-soft 4s ease-in-out infinite 1s;
 }
 
 .card-icon {
-  font-size: 2.75rem;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .card-title {
   font-weight: 700;
   color: rgba(255, 255, 255, 0.95);
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
 }
 
 .card-desc {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
 }
 
-@keyframes float {
+@keyframes float-soft {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
   }
 }
 
@@ -934,36 +915,9 @@ import Layout from '@/components/Layout.vue'
     gap: 4rem;
   }
   
-  .hero-card-stack {
+  .hero-card-grid {
     max-width: 340px;
-    height: 400px;
-  }
-  
-  .hero-card {
-    width: 240px;
-    height: 130px;
-    padding: 1.25rem;
     gap: 1rem;
-  }
-  
-  .card-2 {
-    margin-left: 1.5rem;
-  }
-  
-  .card-3 {
-    margin-left: 3rem;
-  }
-  
-  .card-icon {
-    font-size: 2.5rem;
-  }
-  
-  .card-title {
-    font-size: 1rem;
-  }
-  
-  .card-desc {
-    font-size: 0.8rem;
   }
 }
 
@@ -991,23 +945,8 @@ import Layout from '@/components/Layout.vue'
     justify-content: center;
   }
   
-  .hero-card-stack {
-    max-width: 320px;
-    height: 380px;
-    gap: 0.75rem;
-  }
-  
-  .hero-card {
-    width: 240px;
-    height: 120px;
-  }
-  
-  .card-2 {
-    margin-left: 1rem;
-  }
-  
-  .card-3 {
-    margin-left: 2rem;
+  .hero-card-grid {
+    max-width: 360px;
   }
   
   .features-grid {
@@ -1022,32 +961,6 @@ import Layout from '@/components/Layout.vue'
   
   .access-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 992px) {
-  .hero-card-stack {
-    max-width: 300px;
-    height: 360px;
-  }
-  
-  .hero-card {
-    width: 220px;
-    height: 115px;
-    padding: 1rem;
-    gap: 0.85rem;
-  }
-  
-  .card-2 {
-    margin-left: 0.75rem;
-  }
-  
-  .card-3 {
-    margin-left: 1.5rem;
-  }
-  
-  .card-icon {
-    font-size: 2.25rem;
   }
 }
 
@@ -1100,33 +1013,22 @@ import Layout from '@/components/Layout.vue'
     font-size: 0.8rem;
   }
   
-  .hero-card-stack {
-    max-width: 280px;
-    height: 340px;
-    gap: 0.6rem;
+  .hero-card-grid {
+    max-width: 300px;
+    gap: 0.85rem;
   }
   
   .hero-card {
-    width: 220px;
-    height: 105px;
-    padding: 0.85rem 1rem;
-    gap: 0.75rem;
-  }
-  
-  .card-2 {
-    margin-left: 0.5rem;
-  }
-  
-  .card-3 {
-    margin-left: 1rem;
+    min-height: 100px;
+    padding: 1rem;
   }
   
   .card-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .card-title {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
   
   .card-desc {

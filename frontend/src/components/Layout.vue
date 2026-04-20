@@ -435,84 +435,32 @@ const logout = () => {
 @media (max-width: 1400px) {
   .nav-container {
     max-width: 1200px;
-    gap: 1.5rem;
   }
   
   .footer-container {
     max-width: 1200px;
   }
-  
-  .nav-links {
-    gap: 0.25rem;
-  }
-  
-  .nav-link {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .search-input {
-    width: 160px;
-  }
 }
 
 @media (max-width: 1200px) {
-  .nav-container {
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-  }
-  
-  .nav-center {
-    justify-content: center;
-  }
-  
-  .nav-links {
-    gap: 0.25rem;
-  }
-  
-  .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.85rem;
-  }
-  
-  .nav-icon {
-    font-size: 1rem;
-  }
-  
-  .search-input {
-    width: 120px;
-    font-size: 0.85rem;
-  }
-  
-  .btn-login,
-  .btn-admin,
-  .btn-logout {
-    padding: 0.6rem 1.25rem;
-    font-size: 0.85rem;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 992px) {
   .nav-container {
     grid-template-columns: auto 1fr;
     gap: 1rem;
   }
   
+  .nav-center {
+    justify-content: flex-end;
+  }
+  
   .nav-actions {
     grid-column: 1 / -1;
     justify-content: center;
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1rem;
   }
   
-  .nav-center {
-    justify-content: flex-end;
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 }
 
@@ -522,40 +470,15 @@ const logout = () => {
     text-align: center;
     height: auto;
     padding: 1rem;
-    gap: 0.75rem;
-  }
-  
-  .nav-center {
-    justify-content: center;
-    order: 2;
-  }
-  
-  .nav-actions {
-    order: 3;
-    grid-column: auto;
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-  }
-  
-  .logo {
-    order: 1;
-    justify-content: center;
   }
   
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  .nav-link {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
   }
   
   .search-input {
-    width: 140px;
+    width: 150px;
   }
   
   .footer-content {
